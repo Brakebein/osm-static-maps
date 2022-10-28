@@ -1,18 +1,22 @@
 {
-  "name": "osm-static-maps",
-  "version": "3.10.3",
+  "name": "@brakebein/osm-static-maps",
+  "version": "3.11.0",
   "description": "Create a static image of a map with the features you want",
   "author": "Julian Perelli",
   "contributors": [
     {
       "name": "Julian Perelli",
       "email": "jperelli@gmail.com"
+    },
+    {
+      "name": "Brakebein",
+      "url": "https://github.com/Brakebein"
     }
   ],
   "license": "GPLv2",
   "repository": {
     "type": "git",
-    "url": "http://github.com/jperelli/osm-static-maps.git"
+    "url": "https://github.com/Brakebein/osm-static-maps.git"
   },
   "engines": {
     "node": ">=12"
@@ -48,5 +52,6 @@
     "imagemin": "^8.0.1",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0"
-  }
+  },
+  "files": ["src"]
 }

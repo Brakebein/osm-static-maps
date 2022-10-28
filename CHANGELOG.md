@@ -1,3 +1,8 @@
+# 3.11.0
+
+- updated dependencies
+- no default export
+
 # 3.10.3
 
 Support AWS functions hotfix
