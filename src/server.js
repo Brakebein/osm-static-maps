@@ -1,13 +1,13 @@
-const express = require("express"),
-  http = require("http"),
-  osmsm = require("./lib.js");
+const express = require('express');
+const http = require('http');
+const { osmsm } = require('./lib.js');
 
 const app = express();
 // app.set("port", process.env.PORT || 3000);
-app.set("views", __dirname + "/lib");
-app.set("view engine", "handlebars");
-app.set("view options", { layout: false });
-app.use(express.json({ limit: "50mb" }));
+app.set('views', __dirname + '/lib');
+app.set('view engine', 'handlebars');
+app.set('view options', { layout: false });
+app.use(express.json({ limit: '50mb' }));
 
 app.use((req, res, next) => {
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;

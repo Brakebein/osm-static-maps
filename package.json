@@ -14,8 +14,20 @@
     "type": "git",
     "url": "http://github.com/jperelli/osm-static-maps.git"
   },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "start": "node src/cli.js serve",
+    "dev": "nodemon -e js,html src/cli.js serve",
+    "installandstartdev": "npm install && npm run dev",
+    "test": "ava"
+  },
+  "main": "./src/lib.js",
+  "bin": {
+    "osmsm": "./src/cli.js"
+  },
   "dependencies": {
-    "chrome-aws-lambda": "^5.5.0",
     "commander": "^6.2.1",
     "express": "4.17.1",
     "handlebars": "4.7.7",
@@ -26,22 +38,13 @@
     "leaflet-polylinedecorator": "1.6.0",
     "mapbox-gl": "^1.13.0",
     "mapbox-gl-leaflet": "0.0.15",
-    "puppeteer-core": "^5.5.0"
-  },
-  "engines": {
-    "node": ">=12"
-  },
-  "scripts": {
-    "start": "node src/cli.js serve",
-    "dev": "nodemon -e js,html src/cli.js serve",
-    "installandstartdev": "npm install && npm run dev"
-  },
-  "main": "./src/lib.js",
-  "bin": {
-    "osmsm": "./src/cli.js"
+    "puppeteer": "^5.5.0"
   },
   "devDependencies": {
+    "@types/geojson": "^7946.0.10",
+    "@types/sharp": "^0.31.0",
+    "ava": "^5.0.1",
     "nodemon": "2.0.13",
-    "puppeteer": "^5.5.0"
+    "sharp": "^0.31.1"
   }
 }

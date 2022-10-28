@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const program = require("commander");
-const osmsm = require("./lib");
-const package = require("../package.json");
+const program = require('commander');
+const { osmsm } = require('./lib');
+const pkg = require('../package.json');
 
 program
-  .version(package.version)
+  .version(pkg.version)
   .name("osmsm")
   .usage(
     "[options]\nGenerate an image of a geojson with a background map layer"

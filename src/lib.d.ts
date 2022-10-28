@@ -1,13 +1,12 @@
-import { Control, IconOptions, PathOptions } from "leaflet";
+import { Control, IconOptions, PathOptions } from 'leaflet';
+import { GeoJSON } from 'geojson';
 
-export = _default;
-
-interface OsmStaticMapsOptions {
+export interface OsmStaticMapsOptions {
   /**
    * Geojson object to be rendered in the map
    * @defaultValue `undefined`
    */
-  geojson?: string | GeoJSON.GeoJSON;
+  geojson?: string | GeoJSON;
 
   /**
    * Filename or url of a geojson to be rendered in the map ('-' to use stdin)
@@ -94,12 +93,6 @@ interface OsmStaticMapsOptions {
   imagemin?: boolean;
 
   /**
-   * enable losslsess compression with [oxipng](https://github.com/shssoichiro/oxipng)
-   * @defaultValue `false`
-   */
-  oxipng?: boolean;
-
-  /**
    * render arrows to show the direction of linestrings
    * @defaultValue `false`
    */
@@ -138,6 +131,6 @@ interface OsmStaticMapsOptions {
 }
 
 /** Renders a map controlled by the options passed and returns an image */
-declare function _default<T extends OsmStaticMapsOptions>(
+export declare function osmsm<T extends OsmStaticMapsOptions>(
   options?: T
 ): Promise<T extends { renderToHtml: true } ? string : Buffer>;
