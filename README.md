@@ -1,8 +1,6 @@
 # osm-static-maps
 
-Openstreetmap static maps is a nodejs lib, CLI and server open source inspired on google static map service
-
-Here you have a [demo](http://osm-static-maps.herokuapp.com/?geojson=[{"type":"Feature","properties":{"party":"Republican"},"geometry":{"type":"Polygon","coordinates":[[[-104.05,48.99],[-97.22,48.98],[-96.58,45.94],[-104.03,45.94],[-104.05,48.99]]]}},{"type":"Feature","properties":{"party":"Democrat"},"geometry":{"type":"Polygon","coordinates":[[[-109.05,41.00],[-102.06,40.99],[-102.03,36.99],[-109.04,36.99],[-109.05,41.00]]]}}]&height=300&width=300 "Just what I wanted!"). Also a [dynamic version](http://osm-static-maps.herokuapp.com/dynamic?geojson=[{"type":"Feature","properties":{"party":"Republican"},"geometry":{"type":"Polygon","coordinates":[[[-104.05,48.99],[-97.22,48.98],[-96.58,45.94],[-104.03,45.94],[-104.05,48.99]]]}},{"type":"Feature","properties":{"party":"Democrat"},"geometry":{"type":"Polygon","coordinates":[[[-109.05,41.00],[-102.06,40.99],[-102.03,36.99],[-109.04,36.99],[-109.05,41.00]]]}}]&height=300&width=300 "Wow it gets even better!!") of the demo, for testing purposes.
+Openstreetmap static maps is a Node.js lib, CLI and server open source inspired on Google static map service.
 
 ## How to use
 
@@ -20,7 +18,7 @@ osmsm -g '{"type":"Point","coordinates":[-105.01621,39.57422]}' > map.png
 sudo npm i -g osm-static-maps --unsafe-perm=true
 ```
 
-### 2. nodejs library
+### 2. Node.js library
 
 ```bash
 npm install osm-static-maps
@@ -28,14 +26,14 @@ npm install osm-static-maps
 
 ```javascript
 // index.js old school
-osmsm = require('osm-static-maps');
+const { osmsm } = require('osm-static-maps');
 osmsm({geojson: geojson})
   .then(function(imageBinaryBuffer) { ... })
-  .catch(function(error) { ... })
+  .catch(function(error) { ... });
 
 // index.js modern style (also supports typescript)
-import osmsm from 'osm-static-maps'
-const imageBinaryBuffer = await osmsm({geojson})
+import { osmsm } from 'osm-static-maps';
+const imageBinaryBuffer = await osmsm({geojson});
 ```
 
 ### 3. Standalone sample server
@@ -51,12 +49,6 @@ git clone git@github.com:jperelli/osm-static-maps.git
 cd osm-static-maps
 docker-compose up
 ```
-
-### 4. Cloud service
-
-You can use the heroku-hosted alternative directly [here](http://osm-static-maps.herokuapp.com/ "Awesome!")
-
-We are currently in the cloud beta, contact me directly at jperelli+osmsm@gmail.com so I can give you access to the cloud service.
 
 ## API Reference
 
@@ -79,7 +71,6 @@ All parameters have a short and long version. The short version can be used only
 | F | type | format of the image returned (`'jpeg'`/`'png'`) | `'png'` |
 | q | quality | quality of the image returned (`0`-`100`, only for `jpg`) | `100` |
 | x | imagemin | enable lossless compression with [optipng](https://github.com/imagemin/imagemin-optipng) / [jpegtran](https://github.com/imagemin/imagemin-jpegtran) | `false` |
-| X | oxipng | enable losslsess compression with [oxipng](https://github.com/shssoichiro/oxipng) | `false` |
 | a | arrows | render arrows to show the direction of linestrings | `false` |
 | s | scale | enable render a scale ruler (boolean or [a json options object](https://leafletjs.com/reference-1.6.0.html#control-scale-option)) | `false` |
 | T | timeout | miliseconds until page load throws timeout | `20000` |
@@ -87,13 +78,21 @@ All parameters have a short and long version. The short version can be used only
 | S | style | style to apply to each feature ([a json options object](https://leafletjs.com/reference-1.6.0.html#path-option)) *see note | `undefined` (leaflet's default) |
 | e | haltOnConsoleError | throw error if there is any `console.error(...)` when rendering the map image | `false` |
 
-* Note on markerIconOptions: it's also accepted a markerIconOptions attribute in the geojson feature, for example `{"type":"Point","coordinates":[-105.01621,39.57422],"markerIconOptions":{"iconUrl":"https://leafletjs.com/examples/custom-icons/leaf-red.png"}}`
+* Note on markerIconOptions: it's also accepted a markerIconOptions attribute in the geojson feature, for example
+```json
+{"type":"Point","coordinates":[-105.01621,39.57422],"markerIconOptions":{"iconUrl":"https://leafletjs.com/examples/custom-icons/leaf-red.png"}}
+```
 
-* Note on style: it's also accepted a pathOptions attribute in the geojson feature, for example `{"type":"Polygon","coordinates":[[[-56.698,-36.413],[-56.716,-36.348],[-56.739,-36.311]]],"pathOptions":{"color":"#FF5555"}}` (also remember that the `#` char needs to be passed as `%23` if you are using GET params)
+* Note on style: it's also accepted a pathOptions attribute in the geojson feature, for example
+```json
+{"type":"Polygon","coordinates":[[[-56.698,-36.413],[-56.716,-36.348],[-56.739,-36.311]]],"pathOptions":{"color":"#FF5555"}}
+```
+
+* also remember that the `#` char needs to be passed as `%23` if you are using GET params
 
 ## Design considerations & architecture
 
-[Read the blogpost](https://jperelli.com.ar/project/2019/10/01/osm-static-maps/) on the creation of this library and how it works internally
+[Read the blogpost](https://jperelli.com.ar/project/2019/10/01/osm-static-maps/) on the creation of this library and how it works internally.
 
 ## LICENSE
 
@@ -108,4 +107,3 @@ Specially to the contributors of
 - Puppeteer
 - ExpressJS
 - Handlebars
-
